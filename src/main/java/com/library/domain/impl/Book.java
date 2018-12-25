@@ -14,59 +14,59 @@ import com.library.domain.EntityID;
 public class Book implements EntityID {
 
   private static final long serialVersionUID = 1562848424L;
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(unique = false, nullable = false)
   private String title;
-  
+
   @Column(unique = false, nullable = false)
   private String author;
-  
+
   @Column(unique = false, nullable = false)
   private String publisher;
-  
+
   @Column(unique = false, nullable = false)
   private LocalDate publicationDate;
-  
+
   @Column(unique = false, nullable = false)
   private String language;
-  
+
   @Column(unique = false, nullable = false)
   private String category;
-  
+
   @Column(unique = false, nullable = false)
   private int numberOfPages;
- 
+
   @Column(unique = false, nullable = true)
   private String format;
-  
+
   @Column(unique = false, nullable = false)
   private String isbn;
-  
+
   @Column(unique = false, nullable = false)
   private double shippingWeight;
-  
+
   @Column(unique = false, nullable = false)
   private double listPrice;
-  
+
   @Column(unique = false, nullable = true)
   private double ourPrice;
-  
+
   @Column(unique = false, nullable = false)
   private LocalDate bookAddedDate;
-  
+
   @Column(unique = false, nullable = false)
   private boolean active = true;
 
   @Column(unique = false, nullable = false, columnDefinition = "text")
   private String description;
-  
+
   @Column(unique = false, nullable = false)
   private int inStockNumber;
-  
+
   @Transient
   @Column(unique = false, nullable = true)
   private MultipartFile bookImage;
@@ -78,12 +78,12 @@ public class Book implements EntityID {
 
   @Override
   public Long getId() {
-    return null;
+    return id;
   }
 
   @Override
   public void setId(Long id) {
-    
+    this.id = id;
   }
 
   public String getTitle() {
@@ -339,6 +339,6 @@ public class Book implements EntityID {
         + description + ", inStockNumber=" + inStockNumber + "]";
   }
 
-  
-  
+
+
 }

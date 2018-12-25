@@ -1,10 +1,12 @@
 package com.library.domain.impl;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import com.library.domain.EntityID;
 
 @Entity
@@ -23,6 +25,10 @@ public class Privilege implements EntityID {
   @Column(unique = false, nullable = true)
   private String description;
 
+  @ManyToMany(mappedBy = "privileges")
+  private List<Role> roles;
+
+
   public Privilege() {
     super();
   }
@@ -31,7 +37,6 @@ public class Privilege implements EntityID {
     super();
     this.name = nameToSet;
   }
-
 
   @Override
   public Long getId() {
@@ -59,6 +64,13 @@ public class Privilege implements EntityID {
     this.description = description;
   }
 
+  public List<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
+  }
 
   @Override
   public int hashCode() {

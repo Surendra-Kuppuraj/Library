@@ -1,6 +1,5 @@
 package com.library.service;
 
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.of;
 import java.util.Collections;
 import java.util.List;
@@ -11,8 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.transaction.annotation.Transactional;
 import com.library.domain.EntityID;
 import com.library.repository.IFindByIDWithJPARepository;
-import com.library.util.PreConditions;
-
+import com.library.util.EntityPreConditions;
 
 @Transactional
 public abstract class AbstractService<T extends EntityID> implements ServiceOperation<T>  {
@@ -31,11 +29,10 @@ public abstract class AbstractService<T extends EntityID> implements ServiceOper
   }
 
 
-  @SuppressWarnings("unchecked")
   @Override
   @Transactional(readOnly = true)
   public List<T> findAll() {
-    return  (List<T>) of(getDao().findAll()).collect(toList()); 
+    return (List<T>) getDao().findAll(); 
   }
 
   @Override
@@ -71,14 +68,14 @@ public abstract class AbstractService<T extends EntityID> implements ServiceOper
 
   @Override
   public T create(final T entity) {
-    PreConditions.checkEntityExists(entity);
+    EntityPreConditions.checkEntityExists(entity);
     final T persistedEntity = getDao().save(entity);
     return persistedEntity;
   }
 
   @Override
   public void update(final T entity) {
-    PreConditions.checkEntityExists(entity);
+    EntityPreConditions.checkEntityExists(entity);
     getDao().save(entity);
   }
 

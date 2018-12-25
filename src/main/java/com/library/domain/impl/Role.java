@@ -1,5 +1,6 @@
 package com.library.domain.impl;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +26,9 @@ public class Role implements EntityID {
   @Column(unique = true, nullable = false)
   private String name;
 
+  @ManyToMany(mappedBy = "roles")
+  private List<User> users;
+  
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID")},
       inverseJoinColumns = {@JoinColumn(name = "PRIV_ID", referencedColumnName = "PRIV_ID")})
@@ -70,6 +74,14 @@ public class Role implements EntityID {
 
   public void setPrivileges(final Set<Privilege> privileges) {
     this.privileges = privileges;
+  }
+
+  public List<User> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<User> users) {
+    this.users = users;
   }
 
   @Override

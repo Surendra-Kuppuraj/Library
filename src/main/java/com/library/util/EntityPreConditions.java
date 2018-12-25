@@ -2,9 +2,9 @@ package com.library.util;
 
 import com.library.exception.ApplicationEntityNotFoundException;
 
-public final class PreConditions {
+public final class EntityPreConditions {
 
-  private PreConditions() {
+  private EntityPreConditions() {
     throw new AssertionError();
   }
   
