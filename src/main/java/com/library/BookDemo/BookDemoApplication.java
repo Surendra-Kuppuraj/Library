@@ -45,6 +45,5 @@ public class BookDemoApplication implements CommandLineRunner {
      Book bookCreated = bookService.create(book);
      System.out.println("************************************************");
      System.out.println(bookCreated);
-
   }
 }
